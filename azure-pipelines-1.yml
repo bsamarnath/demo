@@ -9,7 +9,7 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 Phase: 'STARTED'
             - task: Maven@3
               inputs:
@@ -23,7 +23,7 @@ stages:
                 goals: 'compile'
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 Phase: 'COMPLETED'
     - stage: Test
       jobs:
@@ -31,7 +31,7 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 upstream: 'j1'
                 Phase: 'STARTED'
             - task: Maven@3
@@ -47,7 +47,7 @@ stages:
                 testRunTitle: 'j2'
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 upstream: 'j1'
                 Phase: 'COMPLETED'
     - stage: deploy
@@ -57,16 +57,16 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j2'
                 Phase: 'STARTED'
             - task: ServiceNow-DevOps-Server-Change-Acceleration@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j2'
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j2'
                 Phase: 'COMPLETED'
     - stage: pkg
@@ -76,12 +76,12 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j3'
                 Phase: 'STARTED'
             - task: ServiceNow-DevOps-Server-Package-Registration@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 packageRegistrationPayload: |
                   {
                       "name": "pkg$(build.buildId)",
@@ -103,7 +103,7 @@ stages:
                 artifactToolIdExists: false
             - task: ServiceNow-DevOps-Server-Artifact-Registration@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 artifactRegistrationPayload: |
                   {
                      "artifacts": [
@@ -128,7 +128,7 @@ stages:
                 artifactToolIdExists: false
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
-                connectedServiceName: 'empbkaranam2'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j3'
                 Phase: 'COMPLETED'
     - stage: dummy
@@ -137,13 +137,13 @@ stages:
             steps:
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 upstream: 'j4'
                 Phase: 'STARTED'
               continueOnError: true
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
-                connectedServiceName: 'amardevops'
+                connectedServiceName: 'amarchange'
                 upstream: 'j4'
                 Phase: 'COMPLETED'
               continueOnError: true
