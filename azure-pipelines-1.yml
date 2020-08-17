@@ -9,16 +9,6 @@ stages:
               inputs:
                 connectedServiceName: 'amarchange'
                 Phase: 'STARTED'
-            - task: Maven@3
-              inputs:
-                mavenPomFile: 'pom.xml'
-                mavenOptions: '-Xmx3072m'
-                javaHomeOption: 'JDKVersion'
-                jdkVersionOption: '1.8'
-                jdkArchitectureOption: 'x64'
-                publishJUnitResults: true
-                testResultsFiles: '**/surefire-reports/TEST-*.xml'
-                goals: 'compile'
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
                 connectedServiceName: 'amarchange'
@@ -32,17 +22,6 @@ stages:
                 connectedServiceName: 'amarchange'
                 upstream: 'j1'
                 Phase: 'STARTED'
-            - task: Maven@3
-              inputs:
-                mavenPomFile: 'pom.xml'
-                mavenOptions: '-Xmx3072m'
-                javaHomeOption: 'JDKVersion'
-                jdkVersionOption: '1.8'
-                jdkArchitectureOption: 'x64'
-                publishJUnitResults: true
-                testResultsFiles: '**/surefire-reports/TEST-*.xml'
-                goals: 'test'
-                testRunTitle: 'j2'
             - task: ServiceNow-DevOps-Agent-Job-Notification@1
               inputs:
                 connectedServiceName: 'amarchange'
@@ -60,7 +39,7 @@ stages:
                 Phase: 'STARTED'
             - task: ServiceNow-DevOps-Server-Change-Acceleration@1
               inputs:
-                connectedServiceName: 'amarchange'
+                connectedServiceName: 'amarchange1'
                 UpstreamJob: 'j2'
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
