@@ -39,7 +39,7 @@ stages:
                 Phase: 'STARTED'
             - task: ServiceNow-DevOps-Server-Change-Acceleration@1
               inputs:
-                connectedServiceName: 'amarchange1'
+                connectedServiceName: 'amarchange'
                 UpstreamJob: 'j2'
             - task: ServiceNow-DevOps-Server-Job-Notification@1
               inputs:
