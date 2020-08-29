@@ -37,19 +37,6 @@ stages:
   - job: 'Four'
     dependsOn: 'Three'
     pool: server
-    steps:
-    - task: InvokeRESTAPI@1
-      inputs:
-        connectionType: 'connectedServiceName'
-        serviceConnection: 'amarchange1'
-        method: 'POST'
-        body: |
-         {
-            "buildNumber": "$(build.buildId)",
-            "isMultiBranch": "true",
-            "branchName": "$(build.sourceBranchName)"
-                   }
-        waitForCompletion: 'true'
 
 - stage: Deploy
   jobs:
